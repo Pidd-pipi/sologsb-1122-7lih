@@ -2,6 +2,7 @@
 import { computed } from 'vue';
 import type { JointSet } from '../../types/joint';
 import { polarPoint, roseBuckets } from '../../utils/geoMath';
+import { colorOfSetNo } from '../../utils/jointColor';
 
 const props = defineProps<{
   joints: JointSet[];
@@ -9,10 +10,9 @@ const props = defineProps<{
 
 const SIZE = 300;
 const R = 120;
-const COLORS = ['#1f4f8a', '#c9962c', '#2f8f5b', '#a03b8a', '#c0552a', '#4a4a8a'];
 
 function colorOf(setNo: number): string {
-  return COLORS[(setNo - 1) % COLORS.length];
+  return colorOfSetNo(setNo);
 }
 
 const poles = computed(() =>

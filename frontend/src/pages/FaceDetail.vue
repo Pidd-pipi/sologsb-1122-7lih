@@ -139,6 +139,7 @@ onMounted(async () => {
           :face-id="face.id"
           :lithology="face.lithology"
           :attitude="face.attitude"
+          :joints="joints"
           @change="onSketchChange"
         />
       </el-card>
