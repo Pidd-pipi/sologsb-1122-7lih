@@ -97,7 +97,7 @@ async function mergeCluster(clusterNo: number) {
   const sourceIds = joints.value.filter((j) => cluster.members.includes(`J${j.setNo}`) && j.id !== target?.id).map((j) => j.id);
   if (!target) return;
   await jointStore.mergeInto(target.id, sourceIds);
-  ElMessage.success(`已把 ${cluster.members.slice(1).join('、')} 合并入 J${target.setNo}`);
+  ElMessage.success(`已把 ${cluster.members.slice(1).join('、')} 合并入 J${target.setNo}，其素描线条与编号一并转入；未归属线不受影响`);
 }
 
 onMounted(async () => {
@@ -226,7 +226,7 @@ onMounted(async () => {
 
         <el-card v-if="face" shadow="never">
           <template #header><strong>岩性素描（可继续布置结构面）</strong></template>
-          <SketchCanvas :face-id="face.id" :lithology="face.lithology" :attitude="face.attitude" />
+          <SketchCanvas :face-id="face.id" :lithology="face.lithology" :attitude="face.attitude" :joint-sets="joints" />
         </el-card>
       </div>
     </div>
